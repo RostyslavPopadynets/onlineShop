@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/auth.js"></script>
+    <title>Оновлення комп'ютера</title>
+</head>
+
+<body>
+    <style>
+        .menu {
+   width: 960px;
+   margin: 0 auto;
+   margin-right: 0;
+}
+
+.menu:before {
+  content: '';
+  display: block;
+  height: 50px;
+  width: 100%;
+  background: #000;
+  position: absolute;
+  left: 0;
+  z-index: -1;
+  top: 0;
+}
+
+.menu-ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  height: 50px;
+}
+
+.menu-ul-li {
+  float: left;
+}
+
+.menu-ul-li-admin {
+  float: right;
+}
+
+.menu-ul-li-a,
+.auth-red,
+.auth-green {
+  color: #fff;
+  display: block;
+  height: 50px;
+  padding: 0 30px;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 50px;
+}
+
+.menu-ul-li-a:hover {
+  background: #d34d43;
+  text-decoration: none;
+  color: black;
+}
+
+.auth-red:hover {
+  border: red solid 2px;
+  border-radius: 100px;
+  text-decoration: none;
+  color: black;
+}
+
+.auth-green:hover {
+  border: green solid 2px;
+  border-radius: 100px;
+  text-decoration: none;
+  color: black;
+}
+
+        .row {
+            width: 100%;
+        }
+
+        .containet {
+            margin-top: 5px;
+        }
+
+        .col-4 {
+            height: auto;
+        }
+
+        .col-3 {
+            height: auto;
+        }
+
+        .con_start {
+           
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+
+        .con_center {
+            
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .but {
+            margin-top: 0;
+            margin-bottom: 20px;
+            margin-left: 50px;
+        }
+
+        .but2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            margin-left: 420px;
+        }
+
+        .but3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            margin-left: 450px;
+        }
+
+    </style>
+
+    <div id="main">
+
+
+        <section class="containor-fluid" id="laptopForm">
+            <h1 style="text-align: center; color:green">Комп'ютер</h1>
+            <div class="row">
+
+                <div style="text-align:center" style="text-align:center" class="col-6 con_start" id="">
+
+                    <label style="text-align:center">Виробник
+                        <input type="text" class="form-control" id="manufacturer"></label>
+                    <label style="text-align:center">Модель
+                        <input type="text" class="form-control" id="model"></label>
+                    <label style="text-align:center">Процесор
+                        <input type="text" class="form-control" id="processor"></label>
+                    <label style="text-align:center">Влаштована пам'ять
+                        <input type="text" class="form-control" id="driveCapacity"></label>
+                    <label style="text-align:center">Оперативна пам'ять
+                        <input type="text" class="form-control" id="ram"></label>
+                    <label style="text-align:center">Відеокарта
+                        <input type="text" class="form-control" id="graphicAdapter"></label>
+                    <label style="text-align:center">Операційна система
+                        <input type="text" class="form-control" id="os"></label>
+                    <label style="text-align:center">Охолодження
+                        <input type="text" class="form-control" id="cooling"></label>
+                    <h4 class="label">Опис</h4>
+                    <label style="text-align:center">
+                        <textarea class="form-control" cols="80" rows="9" id="description"></textarea></label></label>
+
+                </div>
+                <div style="text-align:center" class="col-6 con_center" id="">
+
+                    <label style="text-align:center">Коляр
+                        <input type="text" class="form-control" id="color"></label>
+                    <label style="text-align:center">Вага
+                        <input type="number" class="form-control" id="weight"></label>
+
+                    <label style="text-align:center">Ширина
+                        <input type="number" class="form-control" id="dimensionsWidth"></label>
+                    <label style="text-align:center">Висота
+                        <input type="number" class="form-control" id="dimensionsHeight"></label>
+                    <label style="text-align:center">Товщина
+                        <input type="number" class="form-control" id="dimensionsLength"></label>
+
+                    <label style="text-align:center">Ціна
+                        <input type="number" class="form-control" id="price"></label>
+                    <h4 class="label">Доповнення</h4>
+                    <label style="text-align:center">
+                        <textarea class="form-control" cols="80" rows="12" id="additional"></textarea></label>
+
+                </div>
+
+            </div>
+            <button type="submit" class="btn btn-dark but" id="clear">Очистити все</button>
+            <button type="submit" class="btn btn-dark but2" id="send">Оновити</button>
+            <button type="submit" class="btn btn-dark but3" id="back">Назад</button>
+        </section>
+
+    </div>
+    <script>
+
+        const rootUrl = 'https://murmuring-earth-34683.herokuapp.com/';
+
+        $(document).ready(function (e) {
+
+            let a = document.location.search;
+            let pcId = a.split("?")[1];
+            let str = a.split("?")[2];
+            defaultValue(pcId);
+
+            $("#clear").bind("click", function () {
+                $("input[type=text], textarea").val("");
+                $("input[type=number], textarea").val("");
+                $("input[type=file], textarea").val("");
+            });
+
+            $("#back").bind("click", function (e) {
+                e.preventDefault();
+                if (str === 'admin') {
+                    location.href = "../admin.html";
+                }
+                if (str === 'pc') {
+                    location.href = "../pc.html?" + pcId;
+                }
+            });
+
+            $("#send").bind("click", function (e) {
+                e.preventDefault();
+                createPC();
+            });
+
+            function createPC() {
+
+                let manufacturer = $('#manufacturer').val();
+                let model = $('#model').val();
+                let processor = $('#processor').val();
+                let driveCapacity = $('#driveCapacity').val();
+                let ram = $('#ram').val();
+                let graphicAdapter = $('#graphicAdapter').val();
+                let os = $('#os').val();
+                let cooling = $('#cooling').val();
+                let color = $('#color').val();
+                let weight = $('#weight').val();
+                let dimensionsWidth = $('#dimensionsWidth').val();
+                let dimensionsHeight = $('#dimensionsHeight').val();
+                let dimensionsLength = $('#dimensionsLength').val();
+                let price = $('#price').val();
+                let additional = $('#additional').val();
+                let description = $('#description').val();
+
+                let pc = {
+                    "manufacturer": manufacturer,
+                    "model": model,
+                    "cooling": cooling,
+                    "driveCapacity": driveCapacity,
+                    "ram": ram,
+                    "os": os,
+                    "processor": processor,
+                    "graphicAdapter": graphicAdapter,
+                    "color": color,
+                    "weight": weight,
+                    "dimensionsWidth": dimensionsWidth,
+                    "dimensionsHeight": dimensionsHeight,
+                    "dimensionsLength": dimensionsLength,
+                    "price": price,
+                    "additional": additional,
+                    "description": description
+                };
+
+                $.ajax({
+                    url: rootUrl + "pc/" + pcId,
+                    method: 'PUT',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify(pc),
+                    complete: function (data) {
+                        if (data.status === 500) {
+                            console.log("Server error! Status 500 !");
+                            console.log(pc);
+                        }
+                        if (data.status === 200) {
+                            if (str === 'admin') {
+                                location = ("href", "../admin.html");
+                            }
+                            if (str === 'pc') {
+                                location = ("href", "../pc.html?" + pcId + "?rostyk28");
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+        function defaultValue(pcId) {
+            $.ajax({
+                url: rootUrl + "pc/" + pcId,
+                method: 'GET',
+                dataType: 'json',
+                success: function (result) {
+
+                    $('#manufacturer').val(result.manufacturer);
+                    $("#model").val(result.model);
+                    $("#cooling").val(result.cooling);
+                    $("#driveCapacity").val(result.driveCapacity);
+                    $("#ram").val(result.ram);
+                    $("#processor").val(result.processor);
+                    $("#os").val(result.os);
+                    $("#graphicAdapter").val(result.graphicAdapter);
+                    $("#color").val(result.color);
+                    $("#weight").val(result.weight);
+                    $("#dimensionsWidth").val(result.dimensionsWidth);
+                    $("#dimensionsHeight").val(result.dimensionsHeight);
+                    $("#dimensionsLength").val(result.dimensionsLength);
+                    $("#price").val(result.price);
+                    $("#additional").val(result.additional);
+                    $("#description").val(result.description);
+
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/auth.js"></script>
+    <title>Оновлення планшета</title>
+</head>
+
+<body>
+    <style>
+        .menu {
+   width: 960px;
+   margin: 0 auto;
+   margin-right: 0;
+}
+
+.menu:before {
+  content: '';
+  display: block;
+  height: 50px;
+  width: 100%;
+  background: #000;
+  position: absolute;
+  left: 0;
+  z-index: -1;
+  top: 0;
+}
+
+.menu-ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  height: 50px;
+}
+
+.menu-ul-li {
+  float: left;
+}
+
+.menu-ul-li-admin {
+  float: right;
+}
+
+.menu-ul-li-a,
+.auth-red,
+.auth-green {
+  color: #fff;
+  display: block;
+  height: 50px;
+  padding: 0 30px;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 50px;
+}
+
+.menu-ul-li-a:hover {
+  background: #d34d43;
+  text-decoration: none;
+  color: black;
+}
+
+.auth-red:hover {
+  border: red solid 2px;
+  border-radius: 100px;
+  text-decoration: none;
+  color: black;
+}
+
+.auth-green:hover {
+  border: green solid 2px;
+  border-radius: 100px;
+  text-decoration: none;
+  color: black;
+}
+
+        .row {
+            width: 100%;
+        }
+
+        .containet {
+            margin-top: 5px;
+        }
+
+        .col-4 {
+            height: auto;
+        }
+
+        .col-3 {
+            height: auto;
+        }
+
+        .con_start {
+           
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+
+        .con_center {
+            
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .but {
+            margin-top: 0;
+            margin-bottom: 20px;
+            margin-left: 50px;
+        }
+
+        .but2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            margin-left: 420px;
+        }
+
+        .but3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            margin-left: 450px;
+        }
+
+    </style>
+
+    <div id="main">
+
+
+        <section class="containor-fluid" id="laptopForm">
+            <h1 style="text-align: center; color:green">Планшет</h1>
+            <div class="row">
+                <div style="text-align:center" style="text-align:center" class="col-6 con_start" id="">
+                    <label style="text-align:center">Виробник
+                        <input type="text" class="form-control" id="manufacturer"></label>
+                    <label style="text-align:center">Модель
+                        <input type="text" class="form-control" id="model"></label>
+                    <label style="text-align:center">Діагональ дисплея
+                        <input type="number" class="form-control" id="displayDiagonal"></label>
+                    <label style="text-align:center">Розширення дисплея
+                        <input type="text" class="form-control" id="resolutionDisplay"></label>
+                    <label style="text-align:center">Процесор
+                        <input type="text" class="form-control" id="processor"></label>
+                    <label style="text-align:center">Влаштована пам'ять
+                        <input type="text" class="form-control" id="driveCapacity"></label>
+                    <label style="text-align:center">Оперативна пам'ять
+                        <input type="text" class="form-control" id="ram"></label>
+                    <label style="text-align:center">Операційна система
+                        <input type="text" class="form-control" id="os"></label>
+                    <label style="text-align:center">Карта пам'яті(макс.)
+                        <input type="text" class="form-control" id="maxFlashMemory"></label>
+
+                    <label style="text-align:center">Фронтальна камера
+                        <input type="text" class="form-control" id="frontalCamera"></label>
+                    <label style="text-align:center">Головна камера
+                        <input type="text" class="form-control" id="mainCamera"></label>
+                    <label style="text-align:center">Потужність батареї
+                        <input type="text" class="form-control" id="batteryCapacity"></label>
+                    <h4 class="label">Опис</h4>
+                    <label style="text-align:center">
+                        <textarea class="form-control" cols="80" rows="10" id="description"></textarea></label></label>
+
+                </div>
+                <div style="text-align:center" class="col-6 con_center" id="">
+
+                    <label style="text-align:center">Частота ядра
+                        <input type="number" class="form-control" id="frequency"></label>
+                    <label style="text-align:center">Кількість ядер
+                        <input type="text" class="form-control" id="coreNumber"></label>
+
+                    <label style="text-align:center">Коляр
+                        <input type="text" class="form-control" id="color"></label>
+                    <label style="text-align:center">Вага
+                        <input type="number" class="form-control" id="weight"></label>
+                    <label style="text-align:center">Ширина
+                        <input type="number" class="form-control" id="dimensionsWidth"></label>
+                    <label style="text-align:center">Висота
+                        <input type="number" class="form-control" id="dimensionsHeight"></label>
+                    <label style="text-align:center">Товщина
+                        <input type="number" class="form-control" id="dimensionsLength"></label>
+
+                    <label style="text-align:center">Ціна
+                        <input type="number" class="form-control" id="price"></label>
+                    <h4 class="label">Доповнення</h4>
+                    <label style="text-align:center">
+                        <textarea class="form-control" cols="80" rows="13" id="additional"></textarea></label>
+
+                </div>
+
+            </div>
+            <button type="submit" class="btn btn-dark but" id="clear">Очистити все</button>
+            <button type="submit" class="btn btn-dark but2" id="send">Оновити</button>
+            <button type="submit" class="btn btn-dark but3" id="back">Назад</button>
+        </section>
+
+    </div>
+    <script>
+
+        const rootUrl = 'https://murmuring-earth-34683.herokuapp.com/';
+
+        $(document).ready(function (e) {
+
+            let a = document.location.search;
+            let tabletId = a.split("?")[1];
+            let str = a.split("?")[2];
+            defaultValue(tabletId);
+
+            $("#clear").bind("click", function () {
+                $("input[type=text], textarea").val("");
+                $("input[type=number], textarea").val("");
+                $("input[type=file], textarea").val("");
+            });
+
+            $("#back").bind("click", function (e) {
+                e.preventDefault();
+                if (str === 'admin') {
+                    location.href = "../admin.html";
+                }
+                if (str === 'tablet') {
+                    location.href = "../tablet.html?" + tabletId;
+                }
+            });
+
+            $("#send").bind("click", function (e) {
+                e.preventDefault();
+                createTablet();
+            });
+
+            function createTablet() {
+
+                let manufacturer = $('#manufacturer').val();
+                let model = $('#model').val();
+                let displayDiagonal = $('#displayDiagonal').val();
+                let resolutionDisplay = $('#resolutionDisplay').val();
+                let driveCapacity = $('#driveCapacity').val();
+                let ram = $('#ram').val();
+                let processor = $('#processor').val();
+                let coreNumber = $('#coreNumber').val();
+                let frontalCamera = $('#frontalCamera').val();
+                let mainCamera = $('#mainCamera').val();
+                let os = $('#os').val();
+                let maxFlashMemory = $('#maxFlashMemory').val();
+                let frequency = $('#frequency').val();
+                let batteryCapacity = $('#batteryCapacity').val();
+                let color = $('#color').val();
+                let weight = $('#weight').val();
+                let dimensionsWidth = $('#dimensionsWidth').val();
+                let dimensionsHeight = $('#dimensionsHeight').val();
+                let dimensionsLength = $('#dimensionsLength').val();
+                let price = $('#price').val();
+                let additional = $('#additional').val();
+                let description = $('#description').val();
+
+                let tablet = {
+                    "manufacturer": manufacturer,
+                    "model": model,
+                    "displayDiagonal": displayDiagonal,
+                    "resolutionDisplay": resolutionDisplay,
+                    "driveCapacity": driveCapacity,
+                    "ram": ram,
+                    "coreNumber": coreNumber,
+                    "processor": processor,
+                    "frontalCamera": frontalCamera,
+                    "mainCamera": mainCamera,
+                    "os": os,
+                    "maxFlashMemory": maxFlashMemory,
+                    "frequency": frequency,
+                    "batteryCapacity": batteryCapacity,
+                    "color": color,
+                    "weight": weight,
+                    "dimensionsWidth": dimensionsWidth,
+                    "dimensionsHeight": dimensionsHeight,
+                    "dimensionsLength": dimensionsLength,
+                    "price": price,
+                    "additional": additional,
+                    "description": description
+                };
+
+                $.ajax({
+                    url: rootUrl + "tablet/" + tabletId,
+                    method: 'PUT',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify(tablet),
+                    complete: function (data) {
+                        if (data.status === 500) {
+                            console.log("Server error! Status 500 !");
+                            console.log(tablet);
+                        }
+                        if (data.status === 200) {
+                            if (str === 'admin') {
+                                location = ("href", "../admin.html");
+                            }
+                            if (str === 'tablet') {
+                                location = ("href", "../tablet.html?" + tabletId + "?rostyk28");
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+        function defaultValue(tabletId) {
+            $.ajax({
+                url: rootUrl + "tablet/" + tabletId,
+                method: 'GET',
+                dataType: 'json',
+                success: function (result) {
+
+                    $('#manufacturer').val(result.manufacturer);
+                    $("#model").val(result.model);
+                    $("#displayDiagonal").val(result.displayDiagonal);
+                    $("#resolutionDisplay").val(result.resolutionDisplay);
+                    $("#driveCapacity").val(result.driveCapacity);
+                    $("#ram").val(result.ram);
+                    $("#coreNumber").val(result.coreNumber);
+                    $("#processor").val(result.processor);
+                    $("#frontalCamera").val(result.frontalCamera);
+                    $("#mainCamera").val(result.mainCamera);
+                    $("#color").val(result.color);
+                    $("#os").val(result.os);
+                    $("#batteryCapacity").val(result.batteryCapacity);
+                    $("#frequency").val(result.frequency);
+                    $("#maxFlashMemory").val(result.maxFlashMemory);
+                    $("#weight").val(result.weight);
+                    $("#dimensionsWidth").val(result.dimensionsWidth);
+                    $("#dimensionsHeight").val(result.dimensionsHeight);
+                    $("#dimensionsLength").val(result.dimensionsLength);
+                    $("#price").val(result.price);
+                    $("#additional").val(result.additional);
+                    $("#description").val(result.description);
+
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

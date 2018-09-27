@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/signup.css">
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/auth.js"></script>
+    <title>Користувач</title>
+</head>
+
+<body>
+    <style>
+        .menu {
+   width: 960px;
+   margin: 0 auto;
+   margin-right: 0;
+}
+
+.menu:before {
+  content: '';
+  display: block;
+  height: 50px;
+  width: 100%;
+  background: #000;
+  position: absolute;
+  left: 0;
+  z-index: -1;
+  top: 0;
+}
+
+.menu-ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  height: 50px;
+}
+
+.menu-ul-li {
+  float: left;
+}
+
+.menu-ul-li-admin {
+  float: right;
+}
+
+.menu-ul-li-a,
+.auth-red,
+.auth-green {
+  color: #fff;
+  display: block;
+  height: 50px;
+  padding: 0 30px;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 50px;
+}
+
+.menu-ul-li-a:hover {
+  background: #d34d43;
+  text-decoration: none;
+  color: black;
+}
+
+.auth-red:hover {
+  border: red solid 2px;
+  border-radius: 100px;
+  text-decoration: none;
+  color: black;
+}
+
+.auth-green:hover {
+  border: green solid 2px;
+  border-radius: 100px;
+  text-decoration: none;
+  color: black;
+}
+
+        .row {
+            width: 100%;
+        }
+
+        .containet {
+            margin-top: 5px;
+        }
+
+        .con_search {
+            margin-left: 30px;
+            margin-right: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            height: auto;
+            width: 25%;
+        }
+
+
+        .con_main {
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            height: auto;
+            width: 70%;
+        }
+
+        .but1 {
+            margin-top: 0;
+            margin-bottom: 0;
+            margin-left: 0;
+        }
+
+        .but2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            margin-left: 420px;
+        }
+
+        #items {
+            margin-top: 10px;
+        }
+
+        #smartphone,
+        #laptop,
+        #tablet,
+        #monitor,
+        #pc,
+        #tv {
+            margin-top: 10px;
+            padding-top: 10px;
+            cursor: pointer;
+            border: 3px green solid;
+            border-radius: 20px;
+            padding: 0 auto;
+            margin: 0 auto;
+        }
+
+        #smartphone:hover,
+        #laptop:hover,
+        #tablet:hover,
+        #monitor:hover,
+        #pc:hover,
+        #tv:hover {
+            border-color: darkred;
+        }
+
+        .product:hover {
+            cursor: pointer;
+            border-color: #d34d43;
+        }
+
+        .product {
+            border: 3px solid green;
+            border-radius: 20px;
+            margin-top: 20px;
+            margin-left: 40px;
+            margin-bottom: 20px;
+            margin-right: 10px;
+            width: 27%;
+            height: 300px;
+            float: left;
+        }
+
+        .product_count {
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .product-image {
+            height: 128px;
+            max-width: 90%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+
+    <header class="menu">
+        <ul class="menu-ul">
+            <li class="menu-ul-li"><a href="../../index.html" class="menu-ul-li-a">Головна</a></li>
+            <li class="menu-ul-li"><a href="buy.html" class="menu-ul-li-a">Купити</a></li>
+            <li class="menu-ul-li"><a href="sell.html" class="menu-ul-li-a">Продати</a></li>
+            <li class="menu-ul-li"><a href="contacts.html" class="menu-ul-li-a">Контакти</a></li>
+        </ul>
+    </header>
+
+    <div id="main">
+
+        <section class="containor-fluid" id="">
+
+            <div class="row">
+
+                <div style="text-align:center" style="text-align:center" class="con_search" id="">
+                    <div id="search_panel">
+                        <h3 id="items">Товари</h3>
+                    </div><br>
+
+                    <div id="smartphone">
+                        <h4>Смартфони</h4>
+                    </div><br>
+
+                    <div id="tablet">
+                        <h4>Планшети</h4>
+                    </div><br>
+
+                    <div id="laptop">
+                        <h4>Ноутбуки</h4>
+                    </div><br>
+
+                    <div id="monitor">
+                        <h4>Монітори</h4>
+                    </div><br>
+
+                    <div id="tv">
+                        <h4>Телевізори</h4>
+                    </div><br>
+
+                    <div id="pc">
+                        <h4>Комп'ютери</h4>
+                    </div>
+
+                    <div class="col-md-12" style="float:left">
+                        <h6 id="verFalse" style="color:red;margin-left:5px">Акаунт не підтвердженно</h6>
+                        <h6 id="verTrue" style="color:green">Акаунт підтвердженно</h6>
+                        <input id="ex" type="submit" value="Вийти" class="btn btn-danger">
+                    </div>
+
+                </div>
+                <div style="text-align:center" class="con_main" id="">
+
+                    <div id="productions">
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <script>
+        let rootUrl = "https://murmuring-earth-34683.herokuapp.com/";
+        let userId = window.localStorage.getItem('userId');
+
+        $(document).ready(function () {
+
+            if(window.localStorage.getItem('userVerifyStatus') === 'true') {
+                $('#verTrue').show();
+                $('#verFalse').hide();
+            }
+
+            if(window.localStorage.getItem('userVerifyStatus') === 'false') {
+                $('#verTrue').hide();
+                $('#verFalse').show();
+            }
+
+            console.log(userId);
+
+            $('#smartphone').on('click', function () {
+                getSmartphones(userId);
+            });
+
+            $('#tablet').on('click', function () {
+                getTablets(userId);
+            });
+
+            $('#laptop').on('click', function () {
+                getLaptops(userId);
+            });
+
+            $('#monitor').on('click', function () {
+                getMonitors(userId);
+            });
+
+            $('#pc').on('click', function () {
+                getPCs(userId);
+            });
+
+            $('#tv').on('click', function () {
+                getTVs(userId);
+            });
+
+        });
+
+        function getLaptops(userId) {
+            $.ajax({
+                url: rootUrl + "laptop/byUserId/" + userId,
+                method: 'GET',
+                dataType: 'json',
+                success: function (result) {
+                    $('#productions').html("");
+                    $('#productions').append('<h4 style="color:blue; text-align: right;">Ноутбуків у продажі: ' + result.length + '<h4>');
+                    $.each(result, function (key, value) {
+                        $('#productions').append(
+                            '<div class="product" id="product-' + value.laptopId + '">' +
+                            '<img class="product-image" src="' + value.imageUrl1 + '">' +
+                            '<h5>' + value.manufacturer + ' ' + value.model + '</h5>' +
+                            '<h6>' + value.diagonalScreen + ", Пам\'ять: " + value.driveCapacity + ', RAM: ' + value.ram + '</h6>' +
+                            '<h5 style="color: red">' + 'Ціна: ' + value.price + ' грн.' + '</h5>' +
+                            '</div>'
+                        );
+
+                    });
+                    $('.product').on('click', function (e) {
+                        let id = e.currentTarget.id;
+                        let laptopId = id.split("-")[1];
+                        e.preventDefault();
+                        location.href = "laptop.html?" + laptopId + "?rostykUs";
+                    });
+
+                },
+                error: function (result) {
+                    $('#productions').html('<h3 style="color:red;text-align:center;margin-top:50px" >Ви не виставляли ноутбуків на продаж</h3>');
+                }
+            })
+        }
+
+        function getTablets(userId) {
+            $.ajax({
+                url: rootUrl + "tablet/byUserId/" + userId,
+                method: 'GET',
+                dataType: 'json',
+                success: function (result) {
+                    $('#productions').html("");
+                    $('#productions').append('<h4 style="color:blue; text-align: right;">Планшетів у продажі: ' + result.length + '<h4>');
+                    $.each(result, function (key, value) {
+                        $('#productions').append(
+                            '<div class="product" id="product-' + value.tabletId + '">' +
+                            '<img class="product-image" src="' + value.imageUrl1 + '">' +
+                            '<h5>' + value.manufacturer + ' ' + value.model + '</h5>' +
+                            '<h6>' + 'RAM: ' + value.ram + '</h6>' +
+                            '<h6>' + ' OS: ' + value.os + '</h6>' +
+                            '<h6>' + 'Пам\'ять: ' + value.driveCapacity + '</h6>' +
+                            '<h5 style="color: red">' + 'Ціна: ' + value.price + ' грн.' + '</h5>' +
+                            '</div>'
+                        );
+
+                    });
+                    $('.product').on('click', function (e) {
+                        let id = e.currentTarget.id;
+                        let tabletId = id.split("-")[1];
+                        e.preventDefault();
+                        location.href = "tablet.html?" + tabletId + "?rostykUs";
+                    });
+                },
+                error: function (result) {
+                    $('#productions').html('<h3 style="color:red;text-align:center;margin-top:50px" >Ви не виставляли планшетів на продаж</h3>');
+                }
+            })
+        }
+
+        function getMonitors(userId) {
+            $.ajax({
+                url: rootUrl + "monitor/byUserId/" + userId,
+                method: 'GET',
+                dataType: 'json',
+                success: function (result) {
+                    $('#productions').html("");
+                    $('#productions').append('<h4 style="color:blue; text-align: right;">Моніторів у продажі: ' + result.length + '<h4>');
+                    $.each(result, function (key, value) {
+                        $('#right').hide();
+                        $('#left').hide();
+                        $('#productions').append(
+                            '<div class="product" id="product-' + value.monitorId + '">' +
+                            '<img class="product-image" src="' + value.imageUrl1 + '">' +
+                            '<h5>' + value.manufacturer + ' ' + value.model + '</h5>' +
+                            '<h5>' + value.displayDiagonal + '", ' + value.maxResolutionDisplay + '</h5>' +
+                            '<h6>' + 'Інтерфейси: ' + value.interfaces + '</h6>' +
+                            '<h5 style="color: red">' + 'Ціна: ' + value.price + ' грн.' + '</h5>' +
+                            '</div>'
+                        );
+
+                    });
+                    $('.product').on('click', function (e) {
+                        let id = e.currentTarget.id;
+                        let monitorId = id.split("-")[1];
+                        e.preventDefault();
+                        location.href = "monitor.html?" + monitorId + "?rostykUs";
+                    });
+                },
+                error: function (result) {
+                    $('#productions').html('<h3 style="color:red;text-align:center;margin-top:50px" >Ви не виставляли моніторів на продаж</h3>');
+                }
+            })
+        }
+
+        function getSmartphones(userId) {
+            $.ajax({
+                url: rootUrl + "smartphone/byUserId/" + userId,
+                method: 'GET',
+                dataType: 'json',
+                success: function (result) {
+                    $('#productions').html("");
+                    $('#productions').append('<h4 style="color:blue; text-align: right;">Смартфонів у продажі: ' + result.length + '<h4>');
+                    $.each(result, function (key, value) {
+                        $('#productions').append(
+                            '<div class="product" id="product-' + value.phoneId + '">' +
+                            '<img class="product-image" src="' + value.imageUrl1 + '">' +
+                            '<h5>' + value.manufacturer + ' ' + value.model + '</h5>' +
+                            '<h6>' + 'RAM: ' + value.ram + '</h6>' +
+                            '<h6>' + ' OS: ' + value.os + '</h6>' +
+                            '<h6>' + 'Пам\'ять: ' + value.driveCapacity + '</h6>' +
+                            '<h5 style="color: red">' + 'Ціна: ' + value.price + ' грн.' + '</h5>' +
+                            '</div>'
+                        );
+
+                    });
+                    $('.product').on('click', function (e) {
+                        let id = e.currentTarget.id;
+                        let phoneId = id.split("-")[1];
+                        e.preventDefault();
+                        location.href = "smartphone.html?" + phoneId + "?rostykUs";
+                    });
+                },
+                error: function (result) {
+                    $('#productions').html('<h3 style="color:red;text-align:center;margin-top:50px" >Ви не виставляли смартфонів на продаж</h3>');
+                }
+            })
+        }
+
+        function getTVs(userId) {
+            $.ajax({
+                url: rootUrl + "tv/byUserId/" + userId,
+                method: 'GET',
+                dataType: 'json',
+                success: function (result) {
+                    $('#productions').html("");
+                    $('#productions').append('<h4 style="color:blue; text-align: right;">Телевізорів у продажі: ' + result.length + '<h4>');
+                    $.each(result, function (key, value) {
+                        $('#productions').append(
+                            '<div class="product" id="product-' + value.tvid + '">' +
+                            '<img class="product-image" src="' + value.imageUrl1 + '">' +
+                            '<h5>' + value.manufacturer + ' ' + value.model + '</h5>' +
+                            '<h6>' + value.displayDiagonal + '" ' + value.resolutionDisplay + '</h6>' +
+                            '<h6>' + value.smartPlatform + ', HDR: ' + value.hdr + '</h6>' +
+                            '<h5 style="color: red">' + 'Ціна: ' + value.price + ' грн.' + '</h5>' +
+                            '</div>'
+                        );
+
+                    });
+                    $('.product').on('click', function (e) {
+                        let id = e.currentTarget.id;
+                        let tvId = id.split("-")[1];
+                        e.preventDefault();
+                        location.href = "tv.html?" + tvId + "?rostykUs";
+                    });
+                },
+                error: function (result) {
+                    $('#productions').html('<h3 style="color:red;text-align:center;margin-top:50px" >Ви не виставляли телевізорів на продаж</h3>');
+                }
+            })
+        }
+
+        function getPCs(userId) {
+            $.ajax({
+                url: rootUrl + "pc/byUserId/" + userId,
+                method: 'GET',
+                dataType: 'json',
+                success: function (result) {
+                    $('#productions').html("");
+                    $('#productions').append('<h4 style="color:blue; text-align: right;">Комп\'ютерів у продажі: ' + result.length + '<h4>');
+                    $.each(result, function (key, value) {
+                        $('#productions').append(
+                            '<div class="product" id="product-' + value.pcid + '">' +
+                            '<img class="product-image" src="' + value.imageUrl1 + '">' +
+                            '<h5>' + value.manufacturer + ' ' + value.model + '</h5>' +
+                            '<h6>' + value.processor + ', RAM: ' + value.ram + '</h6>' +
+                            '<h6>' + 'Пам\'ять: ' + value.driveCapacity + '</h6>' +
+                            '<h5 style="color: red">' + 'Ціна: ' + value.price + ' грн.' + '</h5>' +
+                            '</div>'
+                        );
+
+                    });
+                    $('.product').on('click', function (e) {
+                        let id = e.currentTarget.id;
+                        let pcId = id.split("-")[1];
+                        e.preventDefault();
+                        location.href = "pc.html?" + pcId + "?rostykUs";
+                    });
+                },
+                error: function (result) {
+                    $('#productions').html('<h3 style="color:red;text-align:center;margin-top:50px" >Ви не виставляли комп\'ютерів на продаж</h3>');
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

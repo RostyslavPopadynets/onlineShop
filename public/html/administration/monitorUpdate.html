@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/auth.js"></script>
+    <title>Оновлення монітора</title>
+</head>
+
+<body>
+    <style>
+        .menu {
+   width: 960px;
+   margin: 0 auto;
+   margin-right: 0;
+}
+
+.menu:before {
+  content: '';
+  display: block;
+  height: 50px;
+  width: 100%;
+  background: #000;
+  position: absolute;
+  left: 0;
+  z-index: -1;
+  top: 0;
+}
+
+.menu-ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  height: 50px;
+}
+
+.menu-ul-li {
+  float: left;
+}
+
+.menu-ul-li-admin {
+  float: right;
+}
+
+.menu-ul-li-a,
+.auth-red,
+.auth-green {
+  color: #fff;
+  display: block;
+  height: 50px;
+  padding: 0 30px;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 50px;
+}
+
+.menu-ul-li-a:hover {
+  background: #d34d43;
+  text-decoration: none;
+  color: black;
+}
+
+.auth-red:hover {
+  border: red solid 2px;
+  border-radius: 100px;
+  text-decoration: none;
+  color: black;
+}
+
+.auth-green:hover {
+  border: green solid 2px;
+  border-radius: 100px;
+  text-decoration: none;
+  color: black;
+}
+
+        .row {
+            width: 100%;
+        }
+
+        .containet {
+            margin-top: 5px;
+        }
+
+        .col-4 {
+            height: auto;
+        }
+
+        .col-3 {
+            height: auto;
+        }
+
+        .con_start {
+           
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+
+        .con_center {
+            
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .but {
+            margin-top: 0;
+            margin-bottom: 20px;
+            margin-left: 50px;
+        }
+
+        .but2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            margin-left: 420px;
+        }
+
+        .but3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            margin-left: 450px;
+        }
+
+    </style>
+
+    <div id="main">
+
+
+        <section class="containor-fluid">
+            <h1 style="text-align: center; color:green">Монітор</h1>
+            <div class="row">
+
+                <div style="text-align:center" style="text-align:center" class="col-6 con_start" id="">
+
+                    <label style="text-align:center">Виробник
+                        <input type="text" class="form-control" id="manufacturer"></label>
+                    <label style="text-align:center">Модель
+                        <input type="text" class="form-control" id="model"></label>
+                    <label style="text-align:center">Діагональ дисплея
+                        <input type="text" class="form-control" id="displayDiagonal"></label>
+                    <label style="text-align:center">Макс. розширення дисплея
+                        <input type="text" class="form-control" id="maxResolutionDisplay"></label>
+                    <label style="text-align:center">Тип матриці
+                        <input type="text" class="form-control" id="matrixType"></label>
+                    <label style="text-align:center">Яскравість дисплея
+                        <input type="text" class="form-control" id="displayBrightness"></label>
+                    <label style="text-align:center">Веб-камера
+                        <input type="checkbox" class="form-control" id="webcam"></label>
+
+                    <h4 class="label">Опис</h4>
+                    <label style="text-align:center">
+                        <textarea class="form-control" cols="80" rows="10" id="description"></textarea></label></label>
+
+                </div>
+                <div style="text-align:center" class="col-6 con_center" id="">
+                    <label style="text-align:center">Інтерфейси
+                        <input type="text" class="form-control" id="interfaces"></label>
+                    <label style="text-align:center">Відношення сторін
+                        <input type="text" class="form-control" id="attitudeParties"></label>
+                    <label style="text-align:center">Коляр
+                        <input type="text" class="form-control" id="color"></label>
+                    <label style="text-align:center">Ціна
+                        <input type="number" class="form-control" id="price"></label>
+                    <h4 class="label">Доповнення</h4>
+                    <label style="text-align:center">
+                        <textarea class="form-control" cols="80" rows="12" id="additional"></textarea></label>
+
+                </div>
+
+            </div>
+            <button type="submit" class="btn btn-dark but" id="clear">Очистити все</button>
+            <button type="submit" class="btn btn-dark but2" id="send">Оновити</button>
+            <button type="submit" class="btn btn-dark but3" id="back">Назад</button>
+        </section>
+
+    </div>
+    <script>
+
+        const rootUrl = 'https://murmuring-earth-34683.herokuapp.com/';
+
+        $(document).ready(function (e) {
+
+            let a = document.location.search;
+            let monitorId = a.split("?")[1];
+            let str = a.split("?")[2];
+            defaultValue(monitorId);
+
+            $("#clear").bind("click", function () {
+                $("input[type=text], textarea").val("");
+                $("input[type=number], textarea").val("");
+                $("input[type=file], textarea").val("");
+                $("#webcam").prop("checked", false);
+            });
+
+            $("#back").bind("click", function (e) {
+                e.preventDefault();
+                if (str === 'admin') {
+                    location.href = "../admin.html";
+                }
+                if (str === 'monitor') {
+                    location.href = "../monitor.html?" + monitorId;
+                }
+            });
+
+            $("#send").bind("click", function (e) {
+                e.preventDefault();
+                createMonitor();
+            });
+
+            function createMonitor() {
+
+                let manufacturer = $('#manufacturer').val();
+                let model = $('#model').val();
+                let displayDiagonal = $('#displayDiagonal').val();
+                let maxResolutionDisplay = $('#maxResolutionDisplay').val();
+                let matrixType = $('#matrixType').val();
+                let displayBrightness = $('#displayBrightness').val();
+                let interfaces = $('#interfaces').val();
+                let color = $('#color').val();
+                let attitudeParties = $('#attitudeParties').val();
+                let webcam = $('#webcam').prop("checked");
+                let price = $('#price').val();
+                let additional = $('#additional').val();
+                let description = $('#description').val();
+
+                let monitor = {
+                    "manufacturer": manufacturer,
+                    "model": model,
+                    "displayDiagonal": displayDiagonal,
+                    "maxResolutionDisplay": maxResolutionDisplay,
+                    "matrixType": matrixType,
+                    "interfaces": interfaces,
+                    "displayBrightness": displayBrightness,
+                    "attitudeParties": attitudeParties,
+                    "color": color,
+                    "webcam": webcam,
+                    "price": price,
+                    "additional": additional,
+                    "description": description
+                };
+
+                $.ajax({
+                    url: rootUrl + "monitor/" + monitorId,
+                    method: 'PUT',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify(monitor),
+                    complete: function (data) {
+                        if (data.status === 500) {
+                            console.log("Server error! Status 500 !");
+                            console.log(monitor);
+                        }
+                        if (data.status === 200) {
+                            if (str === 'admin') {
+                                location = ("href", "../admin.html");
+                            }
+                            if (str === 'monitor') {
+                                location = ("href", "../monitor.html?" + monitorId + "?rostyk28");
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+        function defaultValue(monitorId) {
+            $.ajax({
+                url: rootUrl + "monitor/" + monitorId,
+                method: 'GET',
+                dataType: 'json',
+                success: function (result) {
+
+                    $('#manufacturer').val(result.manufacturer);
+                    $("#model").val(result.model);
+                    $("#displayDiagonal").val(result.displayDiagonal);
+                    $("#maxResolutionDisplay").val(result.maxResolutionDisplay);
+                    $("#matrixType").val(result.matrixType);
+                    $("#interfaces").val(result.interfaces);
+                    $("#displayBrightness").val(result.displayBrightness);
+                    $("#attitudeParties").val(result.attitudeParties);
+                    $("#color").val(result.color);
+                    $("#price").val(result.price);
+                    if (result.webcam === true) {
+                        $("#webcam").prop("checked", true);
+                    }
+                    $("#additional").val(result.additional);
+                    $("#description").val(result.description);
+
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

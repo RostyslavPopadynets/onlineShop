@@ -1,0 +1,140 @@
+.menu {
+   width: 960px;
+   margin: 0 auto;
+   margin-right: 0;
+}
+
+.menu:before {
+  content: '';
+  display: block;
+  height: 50px;
+  width: 100%;
+  background: #000;
+  position: absolute;
+  left: 0;
+  z-index: -1;
+  top: 0;
+}
+
+.menu-ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  height: 50px;
+}
+
+.menu-ul-li {
+  float: left;
+}
+
+.menu-ul-li-admin {
+  float: right;
+}
+
+.menu-ul-li-a,
+.auth-red,
+.auth-green {
+  color: #fff;
+  display: block;
+  height: 50px;
+  padding: 0 30px;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 50px;
+}
+
+.menu-ul-li-a:hover {
+  background: #d34d43;
+  text-decoration: none;
+  color: black;
+}
+
+.auth-red:hover {
+  border: red solid 2px;
+  border-radius: 100px;
+  text-decoration: none;
+  color: black;
+}
+
+.auth-green:hover {
+  border: green solid 2px;
+  border-radius: 100px;
+  text-decoration: none;
+  color: black;
+}
+
+.row {
+  width: 100%;
+}
+
+.containet {
+  margin-top: 5px;
+}
+
+.con_mainn {
+  margin-left: 30px;
+  margin-right: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: auto;
+  width: 100%;
+}
+
+.tv:hover,
+.pc:hover,
+.tablet:hover,
+.laptop:hover,
+.smartphone:hover,
+.monitor:hover {
+  cursor: pointer;
+  border-color: #d34d43;
+}
+
+.tv,
+.pc,
+.tablet,
+.laptop,
+.smartphone,
+.monitor  {
+  border: 3px solid black;
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-left: 40px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  width: 28%;
+  height: 300px;
+  float: left;
+  border:green solid 3px;
+}
+
+.add1-image:hover,
+.add2-image:hover {
+cursor: pointer;
+}
+
+.tvv,
+.pcc,
+.tablett,
+.laptopp,
+.smartphonee,
+.monitorr {
+  margin-top: 20px;
+  margin-left: 40px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  width: 28%;
+  height: 300px;
+  float: left;
+}
+
+.product_count {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.product-image {
+  height: 128px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

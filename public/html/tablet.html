@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/buy_app_tablet.js"></script>
+    <script type="text/javascript" src="../js/auth.js"></script>
+    <title>Планшет</title>
+</head>
+
+<body>
+    <style>
+.menu {
+   width: 960px;
+   margin: 0 auto;
+   margin-right: 0;
+}
+
+.menu:before {
+  content: '';
+  display: block;
+  height: 50px;
+  width: 100%;
+  background: #000;
+  position: absolute;
+  left: 0;
+  z-index: -1;
+  top: 0;
+}
+
+.menu-ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  height: 50px;
+}
+
+.menu-ul-li {
+  float: left;
+}
+
+.menu-ul-li-admin {
+  float: right;
+}
+
+.menu-ul-li-a,
+.auth-red,
+.auth-green {
+  color: #fff;
+  display: block;
+  height: 50px;
+  padding: 0 30px;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 50px;
+}
+
+.menu-ul-li-a:hover {
+  background: #d34d43;
+  text-decoration: none;
+  color: black;
+}
+
+.auth-red:hover {
+  border: red solid 2px;
+  border-radius: 100px;
+  text-decoration: none;
+  color: black;
+}
+
+.auth-green:hover {
+  border: green solid 2px;
+  border-radius: 100px;
+  text-decoration: none;
+  color: black;
+}
+
+        .row {
+            width: 100%;
+        }
+
+        .containet {
+            margin-top: 5px;
+        }
+
+        .but1 {
+            margin-top: 0;
+            margin-bottom: 0;
+            margin-left: 0;
+        }
+
+        .but2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            margin-left: 420px;
+        }
+
+        .con_photo {
+            margin-left: 30px;
+            margin-right: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            height: auto;
+            width: 30%;
+            cursor: pointer;
+        }
+
+
+        .con_mai {
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            height: auto;
+            width: 35%;
+            border: solid green 5px;
+            border-radius: 50px;
+        }
+
+        .con_user {
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            height: auto;
+            width: 30%;
+            
+        }
+    </style>
+    <header class="menu">
+        <ul class="menu-ul">
+            <li class="menu-ul-li"><a href="../../index.html" class="menu-ul-li-a">Головна</a></li>
+            <li class="menu-ul-li"><a href="buy.html" class="menu-ul-li-a">Купити</a></li>
+            <li class="menu-ul-li"><a href="sell.html" class="menu-ul-li-a">Продати</a></li>
+            <li class="menu-ul-li"><a href="contacts.html" class="menu-ul-li-a">Контакти</a></li>
+        </ul>
+    </header>
+    <div id="main">
+
+        <section class="containor-fluid" id="">
+
+            <div class="row">
+
+                <div style="text-align:center" class="con_photo" id="">
+                    <div><button style="float:left" type="submit" class="btn btn-dark but3" id="back">Назад</button></div>
+
+                </div>
+                <div style="text-align:center" class="con_mai" id="">
+
+                </div>
+
+                <div style="text-align:center" class="con_user" id="">
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+
+
+
+    <script>
+        $(document).ready(function (e) {
+            let a = document.location.search;
+            let id = a.split("?")[1];
+            getTablet(id);
+        });
+
+        let tablet = null;
+        let user = null;
+        let i = 1;
+
+        function getTablet(id) {
+            $.ajax({
+                url: "https://murmuring-earth-34683.herokuapp.com/tablet/" + id,
+                method: 'GET',
+                dataType: 'json',
+                success: function (result) {
+
+                    user = {
+                        "firstName": result.tabletUser.firstName,
+                        "lastName": result.tabletUser.lastName,
+                        "email": result.tabletUser.email,
+                        "phoneNumber": result.tabletUser.phoneNumber
+                    };
+
+                    tablet = {
+                        "manufacturer": result.manufacturer,
+                        "model": result.model,
+                        "displayDiagonal": result.displayDiagonal,
+                        "resolutionDisplay": result.resolutionDisplay,
+                        "driveCapacity": result.driveCapacity,
+                        "ram": result.ram,
+                        "coreNumber": result.coreNumber,
+                        "processor": result.processor,
+                        "frontalCamera": result.frontalCamera,
+                        "mainCamera": result.mainCamera,
+                        "os": result.os,
+                        "maxFlashMemory": result.maxFlashMemory,
+                        "frequency": result.frequency,
+                        "batteryCapacity": result.batteryCapacity,
+                        "color": result.color,
+                        "weight": result.weight,
+                        "dimensionsWidth": result.dimensionsWidth,
+                        "dimensionsHeight": result.dimensionsHeight,
+                        "dimensionsLength": result.dimensionsLength,
+                        "price": result.price,
+                        "additional": result.additional,
+                        "description": result.description,
+                        "image1": result.imageUrl1,
+                        "image2": result.imageUrl2,
+                        "image3": result.imageUrl3,
+                        "image4": result.imageUrl4,
+                        "image5": result.imageUrl5,
+                        "tabletUser": user
+                    };
+
+                    $('.con_photo').append(
+                        '<img id="photo_img1" style="height:400px;max-width:90%;margin-top:15px" src="' + tablet.image1 + '" alt="">'
+                        + '<img id="photo_img2" style="height:400px;max-width:90%;margin-top:15px" src="' + tablet.image2 + '" alt="">'
+                        + '<img id="photo_img3" style="height:400px;max-width:90%;margin-top:15px" src="' + tablet.image3 + '" alt="">'
+                        + '<img id="photo_img4" style="height:400px;max-width:90%;margin-top:15px" src="' + tablet.image4 + '" alt="">'
+                        + '<img id="photo_img5" style="width:400px;max-width:90%;margin-top:15px" src="' + tablet.image5 + '" alt="">'
+                    );
+
+                    $('.con_mai').append(
+                        '<h3 style="color:green">' + tablet.manufacturer + " " + tablet.model + '</h3>'
+                        + '<h5 style="text-align:left;margin-left:5px;"><b style="color:blue">Дисплей :</b> Діагональ : ' + tablet.displayDiagonal + '", Розширення: '
+                        + tablet.resolutionDisplay + 'пкс.</h5>'
+                        + '<h5 style="text-align:left;margin-left:5px;"><b style="color:blue">Пам\'ять :</b> Влаштована : ' + tablet.driveCapacity + ', Оперативна: ' + tablet.ram + '</h5>'
+                        + '<h5 style="text-align:left;margin-left:5px;"><b style="color:blue">Процесор :</b>' + tablet.processor + ', Кількість ядер :  ' + tablet.coreNumber + ', Частота ядра : ' + tablet.frequency + 'Ггц.</h5>'
+                        + '<h5 style="text-align:left;margin-left:5px;"><b style="color:blue">Камера :</b> Фронтальна : ' + tablet.frontalCamera + ', Головна: ' + tablet.mainCamera + '</h5>'
+                        + '<h5 style="text-align:left;margin-left:5px;"><b style="color:blue">Батарея :</b> ' + tablet.batteryCapacity + '</h5>'
+                        + '<h5 style="text-align:left;margin-left:5px;"><b style="color:blue">Додаткова інформація:</b> Операційна система : ' + tablet.os + ', Карта пам\'яті(макс.) : ' + tablet.maxFlashMemory + '</h5>'
+                        + '<h5 style="text-align:left;margin-left:5px;"><b style="color:blue">Зовнішній вигляд:</b> Коляр : ' + tablet.color + ', Вага: ' + tablet.weight + 'гр., Розміри: '
+                        + tablet.dimensionsWidth + 'x' + tablet.dimensionsLength + 'x' + tablet.dimensionsHeight + 'мм., ' + tablet.description + '</h5>'
+                        + '<h5 style="text-align:left;margin-left:5px;"><b style="color:blue">Доповнення :</b> ' + tablet.additional + '</h5>'
+                        + '<h4 style="text-align:center;margin-left:5px;"><b style="color:red">Ціна :</b> ' + tablet.price + ' грн.</h4>'
+                    );
+                    $('.con_user').append(
+                        '<h3 style="color:green">' + 'Продавець' + '</h3>'
+                        + '<h4 style="text-align:left;margin-left:10px;"><b style="color:blue">П.І:</b> ' + '</h4>'
+                        + '<h4 style="text-align:left;margin-left:10px;">' + result.tabletUser.firstName + ' ' + result.tabletUser.lastName + '</h4>'
+                        + '<h4 style="text-align:left;margin-left:10px;"><b style="color:blue">Email:</b> ' + '</h4>'
+                        + '<h4 style="text-align:left;margin-left:10px;">' + result.tabletUser.email + '</h4>'
+                        + '<br><input id="delete" type="submit" value="Видалити" class="btn btn-danger"><br>'
+                        + '<br><input type="submit" id="update" value="Оновити" class="btn btn-primary"><br>'
+                    );
+
+                    if(window.localStorage.getItem('userId') === result.tabletUser.userId || window.localStorage.getItem('auth_role') === 'ROLE_ADMIN') {
+                        $('#delete').show();
+                        $('#update').show();
+                    }
+                    else {
+                        $('#delete').hide();
+                        $('#update').hide();
+                    }
+
+                    $('#update').on('click', function() {
+                        location = ("href", "administration/tabletUpdate.html?" + result.tabletId + "?tablet");
+                    });
+
+                    $('#delete').on('click', function() {
+                        deleteItem(result.tabletId);
+                    });
+
+                    $('#photo_img2').hide();
+                    $('#photo_img3').hide();
+                    $('#photo_img4').hide();
+                    $('#photo_img5').hide();
+                    console.log(tablet);
+                    $('img').on('click', function () {
+                        if (i === 5) {
+                            i -= 5;
+                        }
+
+                        i++;
+
+                        if (i === 1) {
+                            $('#photo_img1').show();
+                            $('#photo_img2').hide();
+                            $('#photo_img3').hide();
+                            $('#photo_img4').hide();
+                            $('#photo_img5').hide();
+                        }
+                        if (i === 2) {
+                            if (tablet.image2 === '' || tablet.image2 === null) {
+                                $('#photo_img1').show();
+                                $('#photo_img2').hide();
+                                $('#photo_img3').hide();
+                                $('#photo_img4').hide();
+                                $('#photo_img5').hide();
+                                i -= 1;
+                            }
+                            else {
+                                $('#photo_img1').hide();
+                                $('#photo_img2').show();
+                                $('#photo_img3').hide();
+                                $('#photo_img4').hide();
+                                $('#photo_img5').hide();
+                            }
+                        }
+                        if (i === 3) {
+                            if (tablet.image3 === '' || tablet.image3 === null) {
+                                $('#photo_img1').show();
+                                $('#photo_img2').hide();
+                                $('#photo_img3').hide();
+                                $('#photo_img4').hide();
+                                $('#photo_img5').hide();
+                                i -= 2;
+                            }
+                            else {
+                                $('#photo_img1').hide();
+                                $('#photo_img2').hide();
+                                $('#photo_img3').show();
+                                $('#photo_img4').hide();
+                                $('#photo_img5').hide();
+                            }
+                        }
+                        if (i === 4) {
+                            if (tablet.image4 === '' || tablet.image4 === null) {
+                                $('#photo_img1').show();
+                                $('#photo_img2').hide();
+                                $('#photo_img3').hide();
+                                $('#photo_img4').hide();
+                                $('#photo_img5').hide();
+                                i -= 3;
+                            }
+                            else {
+                                $('#photo_img1').hide();
+                                $('#photo_img2').hide();
+                                $('#photo_img3').hide();
+                                $('#photo_img4').show();
+                                $('#photo_img5').hide();
+                            }
+                        }
+                        if (i === 5) {
+                            if (tablet.image5 === '' || tablet.image5 === null) {
+                                $('#photo_img1').show();
+                                $('#photo_img2').hide();
+                                $('#photo_img3').hide();
+                                $('#photo_img4').hide();
+                                $('#photo_img5').hide();
+                                i -= 4;
+                            }
+                            else {
+                                $('#photo_img1').hide();
+                                $('#photo_img2').hide();
+                                $('#photo_img3').hide();
+                                $('#photo_img4').hide();
+                                $('#photo_img5').show();
+                            }
+                        }
+                    });
+                }
+            })
+        }
+        function deleteItem(tabletId) {
+			$.ajax({
+				url: "https://murmuring-earth-34683.herokuapp.com/tablet/" + tabletId,
+				method: 'DELETE',
+				dataType: 'json',
+				complete: function(result) {
+                    location = ("href", "buy.html");
+				}
+				
+			});
+		}
+    </script>
+</body>
+
+</html>

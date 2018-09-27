@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/signup.css">
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/auth.js"></script>
+	<title>Адмін</title>
+</head>
+
+<body>
+	<style>
+		.row {
+            width: 100%;
+        }
+
+        .containet {
+            margin-top: 5px;
+        }
+
+        .con_search {
+            margin-left: 30px;
+            margin-right: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            height: auto;
+            width: 25%;
+        }
+
+
+        .con_main {
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            height: auto;
+            width: 70%;
+        }
+
+        .but1 {
+            margin-top: 0;
+            margin-bottom: 0;
+            margin-left: 0;
+        }
+
+        .but2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            margin-left: 420px;
+        }
+
+        #gl {
+			margin-top: 10px;
+			margin-bottom: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            cursor: pointer;
+            border: 3px black solid;
+            border-radius: 20px;
+            padding: 0 auto;
+            margin: 0 auto;
+        }
+
+		#gl:hover {
+			cursor: pointer;
+            border-color: #d34d43;
+		}
+
+		#user,
+        #smartphone,
+        #laptop,
+        #tablet,
+        #monitor,
+        #pc,
+        #tv {
+            margin-top: 10px;
+            padding-top: 10px;
+            cursor: pointer;
+            border: 3px green solid;
+            border-radius: 20px;
+            padding: 0 auto;
+            margin: 0 auto;
+        }
+
+		#user:hover,
+        #smartphone:hover,
+        #laptop:hover,
+        #tablet:hover,
+        #monitor:hover,
+        #pc:hover,
+        #tv:hover {
+            border-color: darkred;
+        }
+
+        .product:hover {
+            cursor: pointer;
+            border-color: #d34d43;
+        }
+
+        .product {
+            border: 3px solid green;
+            border-radius: 20px;
+            margin-top: 20px;
+            margin-left: 40px;
+            margin-bottom: 20px;
+            margin-right: 10px;
+            width: 27%;
+            height: 300px;
+            float: left;
+        }
+
+        .product_count {
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .product-image {
+            height: 128px;
+            max-width: 90%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+		.up:hover,
+		.del:hover {
+			cursor: pointer;
+			text-decoration-line: underline;
+		}
+    </style>
+
+	<div id="main">
+
+		<section class="containor-fluid" id="">
+
+			<div class="row">
+
+				<div style="text-align:center" style="text-align:center" class="con_search" id="">
+					<div id="search_panel">
+						<h2 id="gl">Головна</h2>
+					</div><br>
+
+					<div id="user">
+						<h4>Користувачі</h4>
+					</div><br>
+
+					<div id="smartphone">
+						<h4>Смартфони</h4>
+					</div><br>
+
+					<div id="tablet">
+						<h4>Планшети</h4>
+					</div><br>
+
+					<div id="laptop">
+						<h4>Ноутбуки</h4>
+					</div><br>
+
+					<div id="monitor">
+						<h4>Монітори</h4>
+					</div><br>
+
+					<div id="tv">
+						<h4>Телевізори</h4>
+					</div><br>
+
+					<div id="pc">
+						<h4>Комп'ютери</h4>
+					</div><br>
+
+					<div class="col-md-12" style="float:left">
+						<input id="ex" type="submit" value="Вийти" class="btn btn-danger">
+					</div>
+
+				</div>
+				<div style="text-align:center" class="con_main" id="">
+					<div class="row">
+						<div class="col-xs-12">
+							<span class="page-title" id="nam"></span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="content-block">
+								<div class="block-content">
+									<table id="example" class="table table-striped" cellspacing="0" width="100%">
+										<thead>
+
+										</thead>
+										<tbody>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</section>
+
+	</div>
+
+	<script>
+		let rootUrl = "https://murmuring-earth-34683.herokuapp.com/";
+
+		$(document).ready(function () {
+
+			$('#gl').on('click', function () {
+				location = ('href', '../../index.html');
+			});
+
+			getUsers();
+			$('#user').on('click', function () {
+				getUsers();
+			});
+
+			$('#smartphone').on('click', function () {
+				getSmartphones();
+			});
+
+			$('#tablet').on('click', function () {
+				getTablets();
+			});
+
+			$('#laptop').on('click', function () {
+				getLaptops();
+			});
+
+			$('#monitor').on('click', function () {
+				getMonitors();
+			});
+
+			$('#pc').on('click', function () {
+				getPCs();
+			});
+
+			$('#tv').on('click', function () {
+				getTVs();
+			});
+
+		});
+
+		function getUsers() {
+			$.ajax({
+				url: rootUrl + "users",
+				method: 'GET',
+				dataType: 'json',
+				success: function (result) {
+					$('#nam').html('<h4 style="color:blue;margin-left:20px">Користувачі</h4>');
+					$('#example tbody').html("");
+					$('#example thead').html("");
+					let i = 0;
+					$('#example thead').append(
+						'<tr>' +
+						'<th>№</th>' +
+						'<th>Ім\'я</th>' +
+						'<th>Прізвище</th>' +
+						'<th>Email</th>' +
+						'<th>Role</th>' +
+						'<th>Видалити</th>' +
+						'<th>Права адміністратора</th>' +
+						'</tr>'
+					);
+					$.each(result, function (key, value) {
+						if (value.role === 'ROLE_ADMIN') {
+							if (value.email !== 'rostyslav.popadynets@gmail.com') {
+								i++;
+								$('#example tbody').append(
+									'<tr>' +
+									'<td>' + i + '</td>' +
+									'<td>' + value.firstName + '</td>' +
+									'<td>' + value.lastName + '</td>' +
+									'<td>' + value.email + '</td>' +
+									'<td style="color:red">' + value.role.split('_')[1] + '</td>' +
+									'<td class="del" id="' + value.userId + '">видалити</td>' +
+									'<td class="up" id="' + value.userId + '" >забрати</td>' +
+									'</tr>'
+								);
+							}
+						} else {
+							i++;
+							$('#example tbody').append(
+								'<tr>' +
+								'<td>' + i + '</td>' +
+								'<td>' + value.firstName + '</td>' +
+								'<td>' + value.lastName + '</td>' +
+								'<td>' + value.email + '</td>' +
+								'<td style="color:green">' + value.role.split('_')[1] + '</td>' +
+								'<td class="del" id="' + value.userId + '">видалити</td>' +
+								'<td class="up" id="' + value.userId + '" >надати</td>' +
+								'</tr>'
+							);
+						}
+					});
+
+					$('.up').on('click', function (e) {
+						updateUserRole('users/role', e.target.id);
+					});
+
+					$('.del').on('click', function (e) {
+						deleteItem('users', e.target.id);
+					});
+
+				},
+				error: function (result) {
+					console.log("Користувачів не знайдно");
+				}
+			})
+		}
+
+		function getLaptops() {
+			$.ajax({
+				url: rootUrl + "laptop",
+				method: 'GET',
+				dataType: 'json',
+				success: function (result) {
+					$('#nam').html('<h4 style="color:blue;margin-left:20px">Ноутбуки</h4>');
+					$('#example tbody').html("");
+					$('#example thead').html("");
+					let i = 0;
+					$('#example thead').append(
+						'<tr>' +
+						'<th>№</th>' +
+						'<th>Виробник</th>' +
+						'<th>Модель</th>' +
+						'<th>Продавець</th>' +
+						'<th>Оновити</th>' +
+						'<th>Видалити</th>' +
+						'</tr>'
+					);
+					$.each(result, function (key, value) {
+						i++;
+						$('#example tbody').append(
+							'<tr>' +
+							'<td>' + i + '</td>' +
+							'<td>' + value.manufacturer + '</td>' +
+							'<td>' + value.model + '</td>' +
+
+							'<td class="up" id="' + value.laptopId + '" >оновити</td>' +
+							'<td class="del" id="' + value.laptopId + '">видалити</td>' +
+							'</tr>'
+						);
+					});
+
+					$('.up').on('click', function (e) {
+						location = ("href", "administration/laptopUpdate.html?" + e.target.id + "?admin");
+					});
+
+					$('.del').on('click', function (e) {
+						deleteItem('laptop', e.target.id);
+					});
+				},
+				error: function (result) {
+					console.log("Ноутбуків не знайдно");
+				}
+			})
+		}
+
+		function getTablets() {
+			$.ajax({
+				url: rootUrl + "tablet",
+				method: 'GET',
+				dataType: 'json',
+				success: function (result) {
+					$('#nam').html('<h4 style="color:blue;margin-left:20px">Планшети</h4>');
+					$('#example tbody').html("");
+					$('#example thead').html("");
+					let i = 0;
+					$('#example thead').append(
+						'<tr>' +
+						'<th>№</th>' +
+						'<th>Виробник</th>' +
+						'<th>Модель</th>' +
+						'<th>Продавець</th>' +
+						'<th>Оновити</th>' +
+						'<th>Видалити</th>' +
+						'</tr>'
+					);
+					$.each(result, function (key, value) {
+						i++;
+						$('#example tbody').append(
+							'<tr>' +
+							'<td>' + i + '</td>' +
+							'<td>' + value.manufacturer + '</td>' +
+							'<td>' + value.model + '</td>' +
+							'<td>' + value.tabletUser.firstName + ' ' + value.tabletUser.lastName + '</td>' +
+							'<td class="up" id="' + value.tabletId + '" >оновити</td>' +
+							'<td class="del" id="' + value.tabletId + '">видалити</td>' +
+							'</tr>'
+						);
+					});
+
+					$('.up').on('click', function (e) {
+						location = ("href", "administration/tabletUpdate.html?" + e.target.id + "?admin");
+					});
+
+					$('.del').on('click', function (e) {
+						deleteItem('tablet', e.target.id);
+					});
+				},
+				error: function (result) {
+					console.log("Планшетів не знайдно");
+				}
+			})
+		}
+
+		function getMonitors() {
+			$.ajax({
+				url: rootUrl + "monitor",
+				method: 'GET',
+				dataType: 'json',
+				success: function (result) {
+					$('#nam').html('<h4 style="color:blue;margin-left:20px">Монітори</h4>');
+					$('#example tbody').html("");
+					$('#example thead').html("");
+					let i = 0;
+					$('#example thead').append(
+						'<tr>' +
+						'<th>№</th>' +
+						'<th>Виробник</th>' +
+						'<th>Модель</th>' +
+						'<th>Продавець</th>' +
+						'<th>Оновити</th>' +
+						'<th>Видалити</th>' +
+						'</tr>'
+					);
+					$.each(result, function (key, value) {
+						i++;
+						$('#example tbody').append(
+							'<tr>' +
+							'<td>' + i + '</td>' +
+							'<td>' + value.manufacturer + '</td>' +
+							'<td>' + value.model + '</td>' +
+							'<td>' + value.monitorUser.firstName + ' ' + value.monitorUser.lastName + '</td>' +
+							'<td class="up" id="' + value.monitorId + '" >оновити</td>' +
+							'<td class="del" id="' + value.monitorId + '">видалити</td>' +
+							'</tr>'
+						);
+					});
+
+					$('.up').on('click', function (e) {
+						location = ("href", "administration/monitorUpdate.html?" + e.target.id + "?admin");
+					});
+
+					$('.del').on('click', function (e) {
+						deleteItem('monitor', e.target.id);
+					});
+				},
+				error: function (result) {
+					console.log("Моніторів не знайдно");
+				}
+			})
+		}
+
+		function getSmartphones() {
+			$.ajax({
+				url: rootUrl + "smartphone",
+				method: 'GET',
+				dataType: 'json',
+				success: function (result) {
+					$('#nam').html('<h4 style="color:blue;margin-left:20px">Смартфони</h4>');
+					$('#example tbody').html("");
+					$('#example thead').html("");
+					let i = 0;
+					$('#example thead').append(
+						'<tr>' +
+						'<th>№</th>' +
+						'<th>Виробник</th>' +
+						'<th>Модель</th>' +
+						'<th>Продавець</th>' +
+						'<th>Оновити</th>' +
+						'<th>Видалити</th>' +
+						'</tr>'
+					);
+					$.each(result, function (key, value) {
+						i++;
+						$('#example tbody').append(
+							'<tr>' +
+							'<td>' + i + '</td>' +
+							'<td>' + value.manufacturer + '</td>' +
+							'<td>' + value.model + '</td>' +
+							'<td>' + value.phoneUser.firstName + ' ' + value.phoneUser.lastName + '</td>' +
+							'<td class="up" id="' + value.phoneId + '" >оновити</td>' +
+							'<td class="del" id="' + value.phoneId + '">видалити</td>' +
+							'</tr>'
+						);
+					});
+
+					$('.up').on('click', function (e) {
+						location = ("href", "administration/smartphoneUpdate.html?" + e.target.id)  + "?admin";
+					});
+
+					$('.del').on('click', function (e) {
+						deleteItem('smartphone', e.target.id);
+					});
+				},
+				error: function (result) {
+					console.log("Смартфонів не знайдно");
+				}
+			})
+		}
+
+		function getTVs() {
+			$.ajax({
+				url: rootUrl + "tv",
+				method: 'GET',
+				dataType: 'json',
+				success: function (result) {
+					$('#nam').html('<h4 style="color:blue;margin-left:20px">Телевізори</h4>');
+					$('#example tbody').html("");
+					$('#example thead').html("");
+					let i = 0;
+					$('#example thead').append(
+						'<tr>' +
+						'<th>№</th>' +
+						'<th>Виробник</th>' +
+						'<th>Модель</th>' +
+						'<th>Продавець</th>' +
+						'<th>Оновити</th>' +
+						'<th>Видалити</th>' +
+						'</tr>'
+					);
+					$.each(result, function (key, value) {
+						i++;
+						$('#example tbody').append(
+							'<tr>' +
+							'<td>' + i + '</td>' +
+							'<td>' + value.manufacturer + '</td>' +
+							'<td>' + value.model + '</td>' +
+							'<td>' + value.tvUser.firstName + ' ' + value.tvUser.lastName + '</td>' +
+							'<td class="up" id="' + value.tvid + '" >оновити</td>' +
+							'<td class="del" id="' + value.tvid + '">видалити</td>' +
+							'</tr>'
+						);
+					});
+
+					$('.up').on('click', function (e) {
+						location = ("href", "administration/tvUpdate.html?" + e.target.id + "?admin");
+					});
+
+					$('.del').on('click', function (e) {
+						deleteItem('tv', e.target.id);
+					});
+				},
+				error: function (result) {
+					console.log("Телевізорів не знайдно");
+				}
+			})
+		}
+
+		function getPCs() {
+			$.ajax({
+				url: rootUrl + "pc",
+				method: 'GET',
+				dataType: 'json',
+				success: function (result) {
+					$('#nam').html('<h4 style="color:blue;margin-left:20px">Комп\'ютери</h4>');
+					$('#example tbody').html("");
+					$('#example thead').html("");
+					let i = 0;
+					$('#example thead').append(
+						'<tr>' +
+						'<th>№</th>' +
+						'<th>Виробник</th>' +
+						'<th>Модель</th>' +
+						'<th>Продавець</th>' +
+						'<th>Оновити</th>' +
+						'<th>Видалити</th>' +
+						'</tr>'
+					);
+					$.each(result, function (key, value) {
+						i++;
+						$('#example tbody').append(
+							'<tr>' +
+							'<td>' + i + '</td>' +
+							'<td>' + value.manufacturer + '</td>' +
+							'<td>' + value.model + '</td>' +
+							'<td>' + value.pcUser.firstName + ' ' + value.pcUser.lastName + '</td>' +
+							'<td class="up" id="' + value.pcid + '" >оновити</td>' +
+							'<td class="del" id="' + value.pcid + '">видалити</td>' +
+							'</tr>'
+						);
+					});
+
+					$('.up').on('click', function (e) {
+						location = ("href", "administration/pcUpdate.html?" + e.target.id + "?admin");
+					});
+
+					$('.del').on('click', function (e) {
+						deleteItem('pc', e.target.id);
+					});
+				},
+				error: function (result) {
+					console.log("Комп'ютерів не знайдно");
+				}
+			})
+		}
+
+		function deleteItem(itemname, itemId) {
+			$.ajax({
+				url: rootUrl + itemname + "/" + itemId,
+				method: 'DELETE',
+				dataType: 'json',
+				complete: function (result) {
+					console.log(result.status);
+					$('#example tbody').html("");
+					if (itemname === 'users') {
+						getUsers();
+					}
+					if (itemname === 'tv') {
+						getTVs();
+					}
+					if (itemname === 'pc') {
+						getPCs();
+					}
+					if (itemname === 'tablet') {
+						getTablets();
+					}
+					if (itemname === 'monitor') {
+						getMonitors();
+					}
+					if (itemname === 'laptop') {
+						getLaptops();
+					}
+					if (itemname === 'smartphone') {
+						getSmartphones();
+					}
+				}
+
+			});
+		}
+
+		function updateItem(itemname, itemId, item) {
+			$.ajax({
+				url: rootUrl + itemname + "/" + itemId,
+				method: 'PUT',
+				data: JSON.stringify(item),
+				contentType: 'application/json',
+				complete: function (result) {
+					console.log(result);
+					$('#example tbody').html("");
+
+					if (itemname === 'tv') {
+						getTVs();
+					}
+					if (itemname === 'pc') {
+						getPCs();
+					}
+					if (itemname === 'tablet') {
+						getTablets();
+					}
+					if (itemname === 'monitor') {
+						getMonitors();
+					}
+					if (itemname === 'laptop') {
+						getLaptops();
+					}
+					if (itemname === 'smartphone') {
+						getSmartphones();
+					}
+				}
+
+			});
+		}
+
+		function updateUserRole(itemname, itemId) {
+			$.ajax({
+				url: rootUrl + itemname + "/" + itemId,
+				method: 'PUT',
+				data: JSON.stringify(),
+				contentType: 'application/json',
+				complete: function (result) {
+					console.log(result.status);
+					$('#example tbody').html("");
+					getUsers();
+				}
+
+			});
+		}
+
+	</script>
+</body>
+
+</html>

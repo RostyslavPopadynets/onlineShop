@@ -1,0 +1,152 @@
+.menu {
+  width: 960px;
+  margin: 0 auto;
+  margin-right: 0;
+}
+
+.menu:before {
+ content: '';
+ display: block;
+ height: 50px;
+ width: 100%;
+ background: #000;
+ position: absolute;
+ left: 0;
+ z-index: -1;
+ top: 0;
+}
+
+.menu-ul {
+ margin: 0;
+ padding: 0;
+ list-style: none;
+ height: 50px;
+}
+
+.menu-ul-li {
+ float: left;
+}
+
+.menu-ul-li-admin {
+ float: right;
+}
+
+.menu-ul-li-a,
+.auth-red,
+.auth-green {
+ color: #fff;
+ display: block;
+ height: 50px;
+ padding: 0 30px;
+ text-transform: uppercase;
+ text-decoration: none;
+ line-height: 50px;
+}
+
+.menu-ul-li-a:hover {
+ background: #d34d43;
+ text-decoration: none;
+ color: black;
+}
+
+.auth-red:hover {
+ border: red solid 2px;
+ border-radius: 100px;
+ text-decoration: none;
+ color: black;
+}
+
+.auth-green:hover {
+ border: green solid 2px;
+ border-radius: 100px;
+ text-decoration: none;
+ color: black;
+}
+.row {
+  width: 100%;
+}
+
+.containet {
+  margin-top: 5px;
+}
+
+.col-3 {
+  height: 225px;
+  border: 3px solid black;
+  border-radius: 50px;
+}
+
+.con_startA, .con_startB {
+  margin-left: 130px;
+  margin-right: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.con_startA:hover, .con_centerA:hover, .con_endA:hover, .con_startB:hover, .con_centerB:hover, .con_endB:hover {
+  background-color:brown;
+  cursor: pointer;
+}
+
+.coll:hover::after {
+  content: attr(data-title);
+  position: absolute;
+  left: 125px;
+  top: 0;
+  z-index: 1; 
+  background: rgba(255,255,230,0.9);
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  padding: 5px 10px;
+  border: 1px solid #333; 
+}
+
+.con_centerA , .con_centerB {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.con_endA , .con_endB {
+  margin-left: 20px;
+  margin-right: 100px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.con_foto1 {
+  width: 240px;
+  margin-top: 40px; 
+  margin-left: 30px;
+}
+
+.con_foto2 {
+  width: 240px;
+  margin-top: 30px; 
+  margin-left: 30px;
+}
+
+.con_foto3 {
+  width: 240px;
+  margin-top: -15px; 
+  margin-left: 30px;
+}
+
+.con_foto4 {
+  width: 240px;
+  margin-top: 0; 
+  margin-left: 30px;
+}
+
+.con_foto5 {
+  width: 240px;
+  margin-top: 0; 
+  margin-left: 30px;
+}
+
+.con_foto6 {
+  width: 240px;
+  margin-top: -15px; 
+  margin-left: 30px;
+}

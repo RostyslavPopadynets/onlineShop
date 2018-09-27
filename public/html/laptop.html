@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/buy_app_laptop.js"></script>
+    <script type="text/javascript" src="../js/auth.js"></script>
+    <title>Ноутбук</title>
+</head>
+
+<body>
+    <style>
+        .menu {
+   width: 960px;
+   margin: 0 auto;
+   margin-right: 0;
+}
+
+.menu:before {
+  content: '';
+  display: block;
+  height: 50px;
+  width: 100%;
+  background: #000;
+  position: absolute;
+  left: 0;
+  z-index: -1;
+  top: 0;
+}
+
+.menu-ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  height: 50px;
+}
+
+.menu-ul-li {
+  float: left;
+}
+
+.menu-ul-li-admin {
+  float: right;
+}
+
+.menu-ul-li-a,
+.auth-red,
+.auth-green {
+  color: #fff;
+  display: block;
+  height: 50px;
+  padding: 0 30px;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 50px;
+}
+
+.menu-ul-li-a:hover {
+  background: #d34d43;
+  text-decoration: none;
+  color: black;
+}
+
+.auth-red:hover {
+  border: red solid 2px;
+  border-radius: 100px;
+  text-decoration: none;
+  color: black;
+}
+
+.auth-green:hover {
+  border: green solid 2px;
+  border-radius: 100px;
+  text-decoration: none;
+  color: black;
+}
+
+        .row {
+            width: 100%;
+        }
+
+        .containet {
+            margin-top: 5px;
+        }
+
+        .but1 {
+            margin-top: 0;
+            margin-bottom: 0;
+            margin-left: 0;
+        }
+
+        .but2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            margin-left: 420px;
+        }
+
+        .con_photo {
+            margin-left: 30px;
+            margin-right: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            height: auto;
+            width: 30%;
+            cursor: pointer;
+        }
+
+
+        .con_mai {
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            height: auto;
+            width: 35%;
+            border: solid green 5px;
+            border-radius: 50px;
+        }
+
+        .con_user {
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            height: auto;
+            width: 30%;
+            
+        }
+    </style>
+    <header class="menu">
+        <ul class="menu-ul">
+            <li class="menu-ul-li"><a href="../../index.html" class="menu-ul-li-a">Головна</a></li>
+            <li class="menu-ul-li"><a href="buy.html" class="menu-ul-li-a">Купити</a></li>
+            <li class="menu-ul-li"><a href="sell.html" class="menu-ul-li-a">Продати</a></li>
+            <li class="menu-ul-li"><a href="contacts.html" class="menu-ul-li-a">Контакти</a></li>
+        </ul>
+    </header>
+    <div id="main">
+
+        <section class="containor-fluid" id="">
+
+            <div class="row">
+
+                <div style="text-align:center" class="con_photo" id="">
+                    <div><button style="float:left" type="submit" class="btn btn-dark but3" id="back">Назад</button></div>
+
+                </div>
+                <div style="text-align:center" class="con_mai" id="">
+
+                </div>
+
+                <div style="text-align:center" class="con_user" id="">
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+
+
+
+    <script>
+        $(document).ready(function (e) {
+            let a = document.location.search;
+            let id = a.split("?")[1];
+            getLaptop(id);
+        });
+
+        let laptop = null;
+        let user = null;
+        let i = 1;
+
+        function getLaptop(id) {
+            $.ajax({
+                url: "https://murmuring-earth-34683.herokuapp.com/laptop/" + id,
+                method: 'GET',
+                dataType: 'json',
+                success: function (result) {
+
+                    user = {
+                        "firstName": result.laptopUser.firstName,
+                        "lastName": result.laptopUser.lastName,
+                        "email": result.laptopUser.email,
+                        "phoneNumber": result.laptopUser.phoneNumber
+                    };
+
+                    laptop = {
+                        "manufacturer": result.manufacturer,
+                        "model": result.model,
+                        "diagonalScreen": result.diagonalScreen,
+                        "driveCapacity": result.driveCapacity,
+                        "ram": result.ram,
+                        "processor": result.processor,
+                        "graphicAdapter": result.graphicAdapter,
+                        "battery": result.battery,
+                        "color": result.color,
+                        "weight": result.weight,
+                        "dimensionsWidth": result.dimensionsWidth,
+                        "dimensionsHeight": result.dimensionsHeight,
+                        'dimensionsLength': result.dimensionsLength,
+                        "price": result.price,
+                        "additional": result.additional,
+                        "description": result.description,
+                        "image1": result.imageUrl1,
+                        "image2": result.imageUrl2,
+                        "image3": result.imageUrl3,
+                        "image4": result.imageUrl4,
+                        "image5": result.imageUrl5,
+                        "laptopUser": user
+                    };
+                    $('.con_photo').append(
+                        '<img id="photo_img1" style="width:400px;margin-top:15px" src="' + laptop.image1 + '" alt="">'
+                        + '<img id="photo_img2" style="width:400px;margin-top:15px" src="' + laptop.image2 + '" alt="">'
+                        + '<img id="photo_img3" style="width:400px;margin-top:15px" src="' + laptop.image3 + '" alt="">'
+                        + '<img id="photo_img4" style="width:400px;margin-top:15px" src="' + laptop.image4 + '" alt="">'
+                        + '<img id="photo_img5" style="width:400px;margin-top:15px" src="' + laptop.image5 + '" alt="">'
+                    );
+
+                    $('.con_mai').append(
+                        '<h3 style="color:green">' + laptop.manufacturer + " " + laptop.model + '</h3>'
+                        + '<h5 style="text-align:left;margin-left:5px;"><b style="color:blue">Дисплей :</b> ' + laptop.diagonalScreen + '</h5>'
+                        + '<h5 style="text-align:left;margin-left:5px;"><b style="color:blue">Пам\'ять :</b> Влаштована : ' + laptop.driveCapacity + ', Оперативна: ' + laptop.ram + '</h5>'
+                        + '<h5 style="text-align:left;margin-left:5px;"><b style="color:blue">Процесор :</b> ' + laptop.processor + '</h5>'
+                        + '<h5 style="text-align:left;margin-left:5px;"><b style="color:blue">Відеокарта :</b> ' + laptop.graphicAdapter + '</h5>'
+                        + '<h5 style="text-align:left;margin-left:5px;"><b style="color:blue">Батарея :</b> ' + laptop.battery + '</h5>'
+                        + '<h5 style="text-align:left;margin-left:5px;"><b style="color:blue">Зовнішній вигляд :</b> Коляр : ' + laptop.color + ', Вага: ' + laptop.weight + 'гр., Розміри: '
+                        + laptop.dimensionsLength + 'x' + laptop.dimensionsWidth + 'x' + laptop.dimensionsHeight + 'мм., ' + laptop.description + '</h5>'
+                        + '<h5 style="text-align:left;margin-left:5px;"><b style="color:blue">Доповнення :</b> ' + laptop.additional + '</h5>'
+                        + '<h4 style="text-align:center;margin-left:5px;"><b style="color:red">Ціна :</b> ' + laptop.price + ' грн.</h4>'
+                    );
+                    $('.con_user').append(
+                        '<h3 style="color:green">' + 'Продавець' + '</h3>'
+                        + '<h4 style="text-align:left;margin-left:10px;"><b style="color:blue">П.І:</b> ' + '</h4>'
+                        + '<h4 style="text-align:left;margin-left:10px;">' + result.laptopUser.firstName + ' ' + result.laptopUser.lastName + '</h4>'
+                        + '<h4 style="text-align:left;margin-left:10px;"><b style="color:blue">Email:</b> ' + '</h4>'
+                        + '<h4 style="text-align:left;margin-left:10px;">' + result.laptopUser.email + '</h4>'
+                        + '<br><input id="delete" type="submit" value="Видалити" class="btn btn-danger"><br>'
+                        + '<br><input type="submit" id="update" value="Оновити" class="btn btn-primary"><br>'
+                    );
+
+                    if (window.localStorage.getItem('userId') === result.laptopUser.userId || window.localStorage.getItem('auth_role') === 'ROLE_ADMIN') {
+                        $('#delete').show();
+                        $('#update').show();
+                    }
+                    else {
+                        $('#delete').hide();
+                        $('#update').hide();
+                    }
+
+                    $('#update').on('click', function () {
+                        location = ("href", "administration/laptopUpdate.html?" + result.laptopId + "?laptop");
+                    });
+
+                    $('#delete').on('click', function () {
+                        deleteItem(result.laptopId);
+                    });
+
+                    $('#photo_img2').hide();
+                    $('#photo_img3').hide();
+                    $('#photo_img4').hide();
+                    $('#photo_img5').hide();
+                    console.log(laptop);
+                    $('img').on('click', function () {
+                        if (i === 5) {
+                            i -= 5;
+                        }
+
+                        i++;
+
+                        if (i === 1) {
+                            $('#photo_img1').show();
+                            $('#photo_img2').hide();
+                            $('#photo_img3').hide();
+                            $('#photo_img4').hide();
+                            $('#photo_img5').hide();
+                        }
+                        if (i === 2) {
+                            if (laptop.image2 === '' || laptop.image2 === null) {
+                                $('#photo_img1').show();
+                                $('#photo_img2').hide();
+                                $('#photo_img3').hide();
+                                $('#photo_img4').hide();
+                                $('#photo_img5').hide();
+                                i -= 1;
+                            }
+                            else {
+                                $('#photo_img1').hide();
+                                $('#photo_img2').show();
+                                $('#photo_img3').hide();
+                                $('#photo_img4').hide();
+                                $('#photo_img5').hide();
+                            }
+                        }
+                        if (i === 3) {
+                            if (laptop.image3 === '' || laptop.image3 === null) {
+                                $('#photo_img1').show();
+                                $('#photo_img2').hide();
+                                $('#photo_img3').hide();
+                                $('#photo_img4').hide();
+                                $('#photo_img5').hide();
+                                i -= 2;
+                            }
+                            else {
+                                $('#photo_img1').hide();
+                                $('#photo_img2').hide();
+                                $('#photo_img3').show();
+                                $('#photo_img4').hide();
+                                $('#photo_img5').hide();
+                            }
+                        }
+                        if (i === 4) {
+                            if (laptop.image4 === '' || laptop.image4 === null) {
+                                $('#photo_img1').show();
+                                $('#photo_img2').hide();
+                                $('#photo_img3').hide();
+                                $('#photo_img4').hide();
+                                $('#photo_img5').hide();
+                                i -= 3;
+                            }
+                            else {
+                                $('#photo_img1').hide();
+                                $('#photo_img2').hide();
+                                $('#photo_img3').hide();
+                                $('#photo_img4').show();
+                                $('#photo_img5').hide();
+                            }
+                        }
+                        if (i === 5) {
+                            if (laptop.image5 === '' || laptop.image5 === null) {
+                                $('#photo_img1').show();
+                                $('#photo_img2').hide();
+                                $('#photo_img3').hide();
+                                $('#photo_img4').hide();
+                                $('#photo_img5').hide();
+                                i -= 4;
+                            }
+                            else {
+                                $('#photo_img1').hide();
+                                $('#photo_img2').hide();
+                                $('#photo_img3').hide();
+                                $('#photo_img4').hide();
+                                $('#photo_img5').show();
+                            }
+                        }
+                    });
+                }
+            })
+        }
+        function deleteItem(laptopId) {
+            $.ajax({
+                url: "https://murmuring-earth-34683.herokuapp.com/laptop/" + laptopId,
+                method: 'DELETE',
+                dataType: 'json',
+                complete: function (result) {
+                    location = ("href", "buy.html");
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
