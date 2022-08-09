@@ -3,11 +3,6 @@ let rootUrl = "https://murmuring-earth-34683.herokuapp.com/";
 let elements = 0;
 
 $(document).ready(function () {
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-233513543-1');
     getLaptops();
 });
 
